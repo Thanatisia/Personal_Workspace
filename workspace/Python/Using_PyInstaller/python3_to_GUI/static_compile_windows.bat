@@ -8,7 +8,7 @@ SET icon_name=res/prog_icon.ico
 SET src_name=%~1
 SET /p out_name=Out File Name: 
 
-SET p3=%RootDir%\CODING\Python\Python_3\Python37\
+SET p3=%RootDir%\<path\to\python_3\here>\
 SET p3_scripts=%p3%\Scripts\
 SET PATH=%p3%;%p3_scripts%;%PATH%
 
