@@ -1,0 +1,13 @@
+[Files]
+pyinstaller.py : 
+	* Default Target - python 
+		- Linux Ubuntu Mate Distro default - python 2
+		- #!/usr/bin/python [ Original ]
+	* Compiles and Outputs Python 2 ( < 3.7 ) programs
+	* Syntax must be in Python 2
+		
+pyinstaller_python3.py :
+	* Modified Target - python 3 
+		Changed from: #!/usr/bin/python -> #!/usr/bin/python3
+	* Compiles and Outputs python 3 programs
+	* Syntax must be in Python 3 - can be Python 2 for some non-deprecated functions
