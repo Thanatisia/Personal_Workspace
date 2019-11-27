@@ -1,0 +1,172 @@
+Best Things to do after creating project folder
+
+	[AndroidManifest.xml]
+	- 1. Check and use permissions if required - I recommend the WRITE_EXTERNAL_STORAGE and READ_EXTERNAL_STORAGE permissions if you will be using file management (i.e. Read/Write)
+	- 2. Note: [android:configChanges="orientation|screenSize"] 
+		- This line will make the application not restart when changing orientation (landscape to portrait and vice versa)	
+[Example 1.]
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.extdbms">
+    
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />    <!-- For writing to storage -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />     <!-- For Reading from storage -->
+
+    <!-- android:icon="@mipmap/ic_launcher" -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/launcher_main_sqlite_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+
+	[MainActivity.java] - basically your activities
+	- 3. Add Menu - If you want to, you can create a Menu folder via this:
+		- go to [app] - your root folder
+			- Right click
+			- Click "New"
+			- Android Resource File
+			- Type "main"
+			- Change Resource Type to Menu
+			- click OK
+		- It should output a menu folder
+
+   /* Menu Functions
+    * public boolean onCreateOptionsMenu(Menu menu) : To inflate and display the menu
+    * public boolean onOptionsItemSelected(@NonNull MenuItem item) : Functions to execute when item is selected from Menu
+    * */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        /* Initialize Menu */
+        // Enable Menu Icon Display
+        menuCtrl.enable_menu_icon(menu); //Enable display of menu icon
+
+        // Designing Menu Items
+        if(securityCtrl.check_build_type() == 1) //Enable Debug menu if is DEBUG
+        {
+            MenuItem menu_design = menuCtrl.add_menu(menu, 0, MENU_DEBUG, 0, "DEBUGGER");
+            menuCtrl.set_icon(menu_design, R.mipmap.ic_launcher_round);
+        }
+        else
+        {
+            MenuItem menu_design = menuCtrl.add_menu(menu, 0, MENU_ENABLE_MODE_DEBUG, 0, "Enable Debug Mode");
+            menuCtrl.set_icon(menu_design, R.mipmap.ic_launcher_round);
+        }
+
+        // Inflating Menu - preparing for display
+        inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu); /* Inflate Menu */
+        //return super.onCreateOptionsMenu(menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        /* Handle Item Selection */
+        //Using switch
+//        switch(item.getItemId())
+//        {
+//            case R.id.menu_env_details:
+//                tests();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+        //Using IF else
+        int id = item.getItemId();
+        if(id == R.id.menu_env_details)
+        {
+            tests();
+            return true;
+        }
+        else if(id == MENU_DEBUG)
+        {
+            Toast.makeText(c, "Nice. \n You're in DEBUGGER", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        else if(id == MENU_ENABLE_MODE_DEBUG)
+        {
+            String OK_BUTTON_TEXT = "OK";
+            final String KEYWORD_PASS = "GODMODE";
+            String label_title = "Please enter your password:";
+            boolean cancelable = false;
+            /* Create a popup for MENU_DEBUG : Validate role */
+//            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(c);
+//
+//            final EditText et = new EditText(c);
+//
+//            // set prompts.xml to alertdialog builder
+//            alertDialogBuilder.setView(et);
+//            alertDialogBuilder.setTitle(label_title + " ");
+//
+//            // set dialog message
+//            alertDialogBuilder.setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int id) {
+//                    String uInput = et.getText().toString();
+//                    if(uInput != null && !uInput.isEmpty() && !uInput.equals("null") && uInput.equals(KEYWORD_PASS))
+//                    {
+//                        util.alert(c, "Opening DEBUG Menu", 1);
+//                    }
+//                    else
+//                    {
+//                        util.alert(c, "Invalid password", 1);
+//                    }
+//                }
+//            });
+//            // create alert dialog
+//            AlertDialog alertDialog = alertDialogBuilder.create();
+//
+//            // show it
+//            alertDialog.show();
+
+            final EditText et = new EditText(c);
+            AlertDialog.Builder alertDialogBuilder = util.alert_dialog_build(c, label_title, et);   //Create Alert Dialog
+            util.alert_dialog_set_cancelable(alertDialogBuilder, cancelable);                    //Set non-cancelable
+
+            alertDialogBuilder.setPositiveButton(OK_BUTTON_TEXT, new DialogInterface.OnClickListener()    //Set Button and OK button
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String uInput = et.getText().toString();
+                    boolean token = validate_debug(uInput, KEYWORD_PASS);
+                    if(token)
+                    {
+                        util.alert(c, "Opening DEBUG Menu", 1);
+                        securityCtrl.set_role("DEBUG");
+                        editor.putString(KEY_BUILD_TYPE,securityCtrl.build_type); //Store String value to SharedPreferences
+                        editor.commit(); //Like github and SQLite3 - you must commit to save the changes to SharedPreferences
+                        Toast.makeText(c, securityCtrl.build_type, Toast.LENGTH_LONG).show();
+                        Intent refresh = new Intent(c, MainActivity.class);
+                        startActivity(refresh);
+                        finish();
+                    }
+                    else
+                    {
+                        util.alert(c, "Invalid password", 1);
+                    }
+                }
+            });
+
+            //create alert dialog and show
+            util.create_and_start_alertdialog(alertDialogBuilder);
+
+            return true;
+        }
+        else
+        {
+            return super.onOptionsItemSelected(item);
+        }
+        //return super.onOptionsItemSelected(item);
+    } 
+
+	

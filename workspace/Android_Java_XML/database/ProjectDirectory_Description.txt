@@ -8,6 +8,8 @@ Project Documentation
 ; Project Changelogs:
 	version_number  - changes
 	v00000001 	- Slate/Basic skeleton for a ListView - Database Structure, to be modified if possible
+	v00000002	- Added 1. SharedPreferences for build types (debug mode/release mode), 2. Write to Text File and Read from Text File, 3. AndroidManifest changed to allow Persistency when rotating, 4. Added Menu - To add Submenu when necessary
+
 ; Project Library Imports: 
 ; Project Summary:
 ; Project Background Information:

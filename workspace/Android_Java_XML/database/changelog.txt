@@ -4,3 +4,4 @@ Changelogs
 		
 	row_id	Version Number	Date of Modification	Time of modification 	Changes
 	1	v00000001 	2019/11/17		17:09hrs		Slate/Basic skeleton for a ListView - Database Structure, to be modified if possible
+	2	v00000002	2019/11/28		01:35hrs		Added 1. SharedPreferences for build types (debug mode/release mode), 2. Write to Text File and Read from Text File, 3. AndroidManifest changed to allow Persistency when rotating, 4. Added Menu - To add Submenu when necessary
