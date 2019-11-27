@@ -1,0 +1,49 @@
+Project Documentation
+
+; Row ID: 1
+; Project ID:
+; Package Name: com.example.extdbms 
+; Project Name: ExtDBMS
+; Project Version: v00000001
+; Project Changelogs:
+	version_number  - changes
+	v00000001 	- Slate/Basic skeleton for a ListView - Database Structure, to be modified if possible
+; Project Library Imports: 
+; Project Summary:
+; Project Background Information:
+; Project Details:
+; Project Features:
+; Project Design Structure:
+; important module/libraries:
+	android.widget.Button;
+	android.widget.Label;
+; important functionalities  
+	; Directory Paths
+	File sdcard = Environment.getExternalStorageDirectory();
+    	String cwd = sdcard.getPath();
+
+	; Program details
+    	String prog_title = "";
+    	String package_name = "";
+    	Activity activity = this;
+    	Context context = this;
+	prog_title = (String)getTitle();
+        package_name = getPackageName();
+; Project Idea:
+; Database Design
+    Database Name:
+    Table    Name: 
+    SQL Query Design:
+    ===========================================================================================
+    | column_name | column_data_type |  column_key | column_null_value | column_AUTOINCREMENT | 
+    ===========================================================================================
+    |   rowID     |     INTEGER      | PRIMARY KEY | NO NULL           | column_AUTOINCREMENT |
+    ===========================================================================================
+
+    CREATE TABLE <table_name> ( "<column_name>", "<column_data_type>", "<column_key>", "<column_null_value>", "<column_AUTOINCREMENT>" )
+    INSERT INTO <table_name> ( "<column_1>", "<column_2>",... "<column_n>" ) VALUES ( "<value_1>", "<value_2>",... "<value_n>" )
+; Unified Modelling Language (UML)
+    Use-Case Description: Write-up Step-by-Step of the processes
+    Use-Case Diagram    : Actor-Background Drawing Design
+    Use-Case Design     : Draw-out the step-by-step process and potential output of how the program will look like
+        

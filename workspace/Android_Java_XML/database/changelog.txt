@@ -1,0 +1,6 @@
+Changelogs
+
+	ExtDBMS
+		
+	row_id	Version Number	Date of Modification	Time of modification 	Changes
+	1	v00000001 	2019/11/17		17:09hrs		Slate/Basic skeleton for a ListView - Database Structure, to be modified if possible
