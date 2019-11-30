@@ -169,4 +169,53 @@ Best Things to do after creating project folder
         //return super.onOptionsItemSelected(item);
     } 
 
+	- 4. Add onBackPressed() for Back button
+    /* Back-button is pressed */
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Really Exit?")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        MainActivity.super.onBackPressed();
+                    }
+                }).create().show();
+        //super.onBackPressed();
+    }
+
+	- 5. Adding Multiple Layout folders to the resource folder
+  - Pre-Requisites:
+	rename your original [layout] folder to another name
+	- I prefer "layouts" because it represents a collection of layout
+
+  - NOTE:
+	- on creating the subfolders, always ensure that your file is inside the layout directory of the subdirectory
+		I.E
+		 src/main/res/layouts/<your_layout_directory>
+			- make sure you have a "layout" directory such as this: src/main/res/layouts/<your_layout_directory>/layout/
+			- Put your layout file in the "layout" directory: src/main/res/layouts/<your_layout_directory>/layout/<your_layout.xml>
+  - Adding additional folders into the individual resource folders
+	Open build.gradle under  "src" - app/src/build.gradle
+    [Structure]
+	- under 
+	buildTypes{
+		...
+	}
+    Put:
+    sourceSets{
+        main{
+            res.srcDirs = [
+                    "src/main/res/layouts/<layout_select_operator>",
+                    "src/main/res/layouts",
+                    "src/main/res"
+            ]
+        }
+    }
+    * Notice the order of adding paths.
+    * - NOTE: Please change the name of feature directory (i.e., layout_select_operator in the example given above) as per your project
+    * - Add all feature directory path in the same way
+    * - src/main/res/layouts MUST be second last and
+    * - src/main/res MUST be the last path
 	
