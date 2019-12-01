@@ -10,6 +10,7 @@ Project Documentation
 	v00000001 	- Slate/Basic skeleton for a ListView - Database Structure, to be modified if possible
 	v00000002	- Added 1. SharedPreferences for build types (debug mode/release mode), 2. Write to Text File and Read from Text File, 3. AndroidManifest changed to allow Persistency when rotating, 4. Added Menu - To add Submenu when necessary
 	v00000003	- 1. Modified Layout - created multi-layout nested folders - allowing for structured folders. Created a "TODO on startup" list, 2. Renamed MainActivity to a FileManagement class and created a MainActivity as well as other classes, 3. Added icon for App Icon as well as Menu icon, 4. Functions to Programatically add Menu and Submenu instead of using <Menu> .xml files, 5. JSONParsers - able to parse and read in JSON files, with functions in JSONParser.java, 6. TODO: SQLite3 Database Class Library, 7. Created os_utility.java for OS and SDK Build version management and checks
+	v00000004	- 1. Added Example SQLite3 project - Companies, ToDO_1: Create a Export and Import function that lets me [Export (Copy) from internal storage (getDataDir() + "/" + "Databases" + "/") to Internal Storage - preferably cwd - i.e. paste in [ cwd + "//" + getPackageName() + "//" + "databases" + db_file_name ] - Check if folder exists, if doesnt - create folders then paste, 
 
 ; Project Library Imports: 
 ; Project Summary:

@@ -1,0 +1,7 @@
+Useful Classes and Views
+
+ContentValues : Essentially a container that lets you put a value into alongside a Key - in a KEY:VALUE system
+        ContentValues contentValue_container = new ContentValues(); //ContentValues is essentially a container to put values
+        contentValue_container.put(country_dbHelper.SUBJECT, name);
+        contentValue_container.put(country_dbHelper.DESCRIPTION, description);
+        db.insert(CountryDatabaseHelper.TABLE_NAME, null, contentValue_container); /* Insert the values in contentValue into the database in [TABLE_NAME] */
