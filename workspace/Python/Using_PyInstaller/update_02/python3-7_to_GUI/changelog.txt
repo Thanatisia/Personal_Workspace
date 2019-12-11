@@ -1,0 +1,1 @@
+python_v9.3_2019-09-05_1045 - simple_gui: changed from InputText([preload-text]) to Multiline([preload-text])
