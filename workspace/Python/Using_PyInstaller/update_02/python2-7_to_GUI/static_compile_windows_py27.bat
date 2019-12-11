@@ -97,7 +97,7 @@ rem		echo Error : Directory [%%q] exist
 rem	)
 rem )
 
-SET master_command=python37 -m PyInstaller --name %out_name% --icon "%cwd%\export\%icon_name%" --distpath "%cwd%\export\exe" --workpath "%cwd%\export\tmp" --specpath "%cwd%\export\spec" --path=%module_paths% --onefile %src_name%
+SET master_command=python27 -m PyInstaller --name %out_name% --icon "%cwd%\export\%icon_name%" --distpath "%cwd%\export\exe" --workpath "%cwd%\export\tmp" --specpath "%cwd%\export\spec" --path=%module_paths% --onefile %src_name%
 echo %master_command%
 %master_command% && (
 	echo Success!
