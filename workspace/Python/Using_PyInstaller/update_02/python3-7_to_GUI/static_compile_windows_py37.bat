@@ -2,7 +2,7 @@
 SET countdown=5
 Set "RootDir=%~d0"
 SET cwd=%cd%
-SET project_folder=%RootDir%\CODING\atom_workspace\Python\python3-7_to_GUI\
+SET project_folder=%RootDir%\CODING\atom_workspace\Python\static_template\python3-7_to_GUI\
 rem SET out_name=
 rem SET src_name=main.py
 SET icon_name=res/prog_icon.ico
